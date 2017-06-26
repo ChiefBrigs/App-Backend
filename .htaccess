@@ -1,0 +1,81 @@
+Options All -Indexes
+
+RewriteEngine on
+RewriteCond %{REQUEST_URI}::$1 ^(.*?/)(.*)::\2$
+RewriteRule ^(.*)$ - [E=BASE:%1]
+
+# Authentication Operations
+RewriteRule ^Join api.php?cmd=Join
+RewriteRule ^VerifyUser api.php?cmd=verifyUser
+RewriteRule ^Resend api.php?cmd=resend
+
+RewriteRule ^CheckNetwork api.php?cmd=CheckNetwork
+RewriteRule ^GetApplicationVersion api.php?cmd=GetApplicationVersion
+RewriteRule ^GetApplicationPrivacy api.php?cmd=GetApplicationPrivacy
+RewriteRule ^getServerInfo api.php?cmd=getServerInfo
+
+#ads Operations
+RewriteRule ^GetAdmobInformation api.php?cmd=GetAdmobInformation
+RewriteRule ^GetAdmobInterstitialInformation api.php?cmd=GetAdmobInterstitialInformation
+
+# Contacts Operations
+RewriteRule ^SendContacts api.php?cmd=SendContacts
+RewriteRule ^GetContact/([0-9]+)$ api.php?cmd=GetContact&userID=$1
+RewriteRule ^GetStatus api.php?cmd=GetStatus
+RewriteRule ^DeleteStatus/(.*)$ api.php?cmd=DeleteStatus&status=$1
+RewriteRule ^DeleteAllStatus  api.php?cmd=DeleteAllStatus
+RewriteRule ^UpdateStatus/([0-9]+)$ api.php?cmd=UpdateStatus&statusID=$1
+RewriteRule ^EditStatus api.php?cmd=EditStatus
+RewriteRule ^EditName api.php?cmd=EditName
+RewriteRule ^uploadImage api.php?cmd=uploadImage
+RewriteRule ^DeleteAccount  api.php?cmd=DeleteUserAccount
+RewriteRule ^DeleteUserAccountConfirmation  api.php?cmd=DeleteUserAccountConfirmation
+
+
+# Messages Operations
+RewriteRule ^Messages/send api.php?cmd=sendMessage
+
+
+# Groups Operations
+RewriteRule ^Groups/createGroup api.php?cmd=createGroup
+RewriteRule ^Groups/addMembersToGroup api.php?cmd=addMembersToGroup
+RewriteRule ^Groups/removeMemberFromGroup api.php?cmd=removeMemberFromGroup
+RewriteRule ^Groups/makeMemberAdmin api.php?cmd=makeMemberAdmin
+RewriteRule ^Groups/makeAdminMember api.php?cmd=makeAdminMember
+RewriteRule ^Groups/all api.php?cmd=getGroups
+RewriteRule ^GetGroup/([0-9]+)$ api.php?cmd=GetGroup&groupID=$1
+RewriteRule ^GetGroupMembers/([0-9]+)$ api.php?cmd=GetGroupMembers&groupID=$1
+RewriteRule ^ExitGroup/([0-9]+)$ api.php?cmd=ExitGroup&groupID=$1
+RewriteRule ^DeleteGroup/([0-9]+)$ api.php?cmd=DeleteGroup&groupID=$1
+RewriteRule ^EditGroupName api.php?cmd=EditGroupName
+RewriteRule ^uploadGroupImage api.php?cmd=uploadGroupImage
+RewriteRule ^Groups/send api.php?cmd=sendMessageGroup
+RewriteRule ^Groups/saveMessage api.php?cmd=saveMessageGroup
+RewriteRule ^Groups/checkUnsentMessageGroup api.php?cmd=checkUnsentMessageGroup
+
+#Files "upload" Operations
+RewriteRule ^uploadMessagesImage api.php?cmd=uploadMessagesImage
+RewriteRule ^uploadMessagesAudio api.php?cmd=uploadMessagesAudio
+RewriteRule ^uploadMessagesDocument api.php?cmd=uploadMessagesDocument
+RewriteRule ^uploadMessagesVideo api.php?cmd=uploadMessagesVideo
+RewriteRule ^uploadMessagesBackup api.php?cmd=uploadMessagesBackup
+
+#Files "Get" Operations
+RewriteRule ^image/profile/(.*)$ safe_files.php?hash=$1&images&profile
+RewriteRule ^image/profilePreview/(.*)$ safe_files.php?hash=$1&images&profilePreview
+RewriteRule ^image/profilePreviewHolder/(.*)$ safe_files.php?hash=$1&images&profilePreviewHolder
+RewriteRule ^image/rowImage/(.*)$ safe_files.php?hash=$1&images&rowImage
+RewriteRule ^image/settings/(.*)$ safe_files.php?hash=$1&images&settings
+RewriteRule ^image/editProfile/(.*)$ safe_files.php?hash=$1&images&editProfile
+
+#Get backup operation
+RewriteRule ^getBackupUrl api.php?cmd=getBackupUrl
+
+#Messages Files Operations
+RewriteRule ^image/messageImage/(.*)$ safe_files.php?hash=$1&images&messageImage
+RewriteRule ^image/messageImageHolder/(.*)$ safe_files.php?hash=$1&images&messageImageHolder
+RewriteRule ^video/messageVideo/(.*)$ safe_files.php?hash=$1&videos&messageVideo
+RewriteRule ^video/messageVideoThumbnail/(.*)$ safe_files.php?hash=$1&videos&messageVideoThumbnail
+RewriteRule ^audio/messageAudio/(.*)$ safe_files.php?hash=$1&audios&messageAudio
+RewriteRule ^document/messageDocument/(.*)$ safe_files.php?hash=$1&documents&messageDocument
+RewriteRule ^backup/messageBackup/(.*)$ safe_files.php?hash=$1&backup&messageBackup
